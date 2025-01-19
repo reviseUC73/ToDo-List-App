@@ -37,7 +37,7 @@ class _TaskManagerState extends State<TaskManager> {
 
     return Scaffold(
       body: NestedScrollView(
-        headerSliverBuilder: (ctx, innerBoxIsScrolled) {
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverToBoxAdapter(
               child: TaskHeader(
@@ -54,6 +54,7 @@ class _TaskManagerState extends State<TaskManager> {
           ];
         },
         body: TaskBody(
+          status: tabs[selectedIndex],
           taskViewModel: taskViewModel,
         ),
       ),
