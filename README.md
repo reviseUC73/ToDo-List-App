@@ -32,17 +32,17 @@ A Flutter-based ToDo List application with a passcode-protected login screen. Th
 
 ## Testing Instructions
 
-##### Unit Tests
+#### Unit Tests
 
 * Run unit tests for validating business logic:
 
-  `flutter test`
+  `flutter test/unit_test`
 
-##### Integration Tests
+#### Integration Tests
 
 * Run integration tests to verify the app's flow:
 
-  ` flutter test integration_test`
+  ` flutter test test/integration_test`
 
 ## Dependencies
 	- intl: For human-readable date formatting (e.g., “Today”, “Tomorrow”).
