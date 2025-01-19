@@ -49,9 +49,7 @@ class TaskCard extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.more_vert, color: Colors.grey[700]),
-            onPressed: () {
-              print('More options pressed for ${task.title}');
-            },
+            onPressed: () {},
           ),
         ],
       ),

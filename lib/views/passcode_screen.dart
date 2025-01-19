@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/utils/passcode_validator.dart';
 
 class PasscodeScreen extends StatefulWidget {
   const PasscodeScreen({super.key});
@@ -8,7 +9,9 @@ class PasscodeScreen extends StatefulWidget {
 }
 
 class _PasscodeScreenState extends State<PasscodeScreen> {
-  final String correctPasscode = "123456"; // Set the correct passcode here
+  final PasscodeValidator passcodeValidator =
+      PasscodeValidator(correctPasscode: "123456");
+
   String enteredPasscode = "";
 
   void _addDigit(String digit) {
@@ -33,11 +36,9 @@ class _PasscodeScreenState extends State<PasscodeScreen> {
   }
 
   void _validatePasscode() {
-    if (enteredPasscode == correctPasscode) {
-      // Navigate to TaskManager
+    if (passcodeValidator.validate(enteredPasscode)) {
       Navigator.pushReplacementNamed(context, '/taskManager');
     } else {
-      // Show error and reset
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Incorrect Passcode'),

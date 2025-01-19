@@ -87,7 +87,8 @@ class TaskViewModel with ChangeNotifier {
     final String url =
         'https://todo-list-api-mfchjooefq-as.a.run.app/todo-list';
     final queryParameters = {
-      'offset': (_currentPage - 1).toString(), // -1 because req api para of offset field -> offset = page - 1
+      'offset': (_currentPage - 1)
+          .toString(), // -1 because req api para of offset field -> offset = page - 1
       'limit': _limit.toString(),
       'sortBy': sortBy,
       'isAsc': isAsc.toString(),
@@ -115,12 +116,14 @@ class TaskViewModel with ChangeNotifier {
 
         _tasks.addAll(fetchedTasks);
       } else {
+        _errorMessage =
+            'Failed to load tasks: Server responded with ${response.statusCode}.';
         throw Exception(
           'Failed to load tasks. Status code: ${response.statusCode}',
         );
       }
     } catch (e) {
-      _errorMessage = e.toString();
+      _errorMessage = 'Failed to load tasks: ${e.toString()}';
     } finally {
       _isLoading = false;
       notifyListeners();
