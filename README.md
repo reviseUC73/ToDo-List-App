@@ -1,7 +1,7 @@
 # ToDo List App
 
 A Flutter-based ToDo List application with a passcode-protected login screen. The app provides task management features and a clean, customizable user interface.
-
+* **Note Password is 123456**
 ## Features
 
 * **Passcode Screen**: Users must enter a passcode to access the app.
@@ -73,6 +73,7 @@ A Flutter-based ToDo List application with a passcode-protected login screen. Th
 ---
 
 ## Preview Project
+
 - ![image](https://github.com/user-attachments/assets/1824ec83-ef3d-49eb-9e2e-cd5c022d460c)
 - ![image](https://github.com/user-attachments/assets/7fe60dc7-d1ca-45b1-a93d-8f46e391eb0e)
 - ![image](https://github.com/user-attachments/assets/c27c1571-b00b-40c1-b48c-4347b108b57f)
