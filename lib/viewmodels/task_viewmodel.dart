@@ -1,17 +1,37 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:todo_list/utils/date_formatter.dart';
 import '../models/task.dart';
 
 class TaskViewModel with ChangeNotifier {
-  List<Task> _tasks = [];
+  final List<Task> _tasks = [];
+
+  final List<IconData> _icons = [
+    Icons.task,
+    Icons.star,
+    Icons.check_circle,
+    Icons.access_alarm,
+    Icons.bookmark,
+  ];
+
+  final List<Color> _colors = [
+    Colors.blue,
+    Colors.green,
+    Colors.orange,
+    Colors.purple,
+    Colors.red,
+  ];
+
+  final Random _random = Random();
+
+  final int _limit = 10;
   bool _isLoading = false;
   bool _hasMore = true;
   String? _errorMessage;
-  final int _limit = 10;
-  int _currentPage = 0; // เก็บ page ปัจจุบัน
-  int _totalPages = 1; // เก็บจำนวน page ทั้งหมด
+  int _currentPage = 1;
+  int _totalPages = 1;
 
   List<Task> get tasks => _tasks;
   bool get isLoading => _isLoading;
@@ -39,68 +59,8 @@ class TaskViewModel with ChangeNotifier {
     required String status,
   }) async {
     if (!_hasMore || _isLoading) return;
-
     _currentPage += 1;
     await _loadTasks(sortBy: sortBy, isAsc: isAsc, status: status);
-  }
-
-  void _resetPagination() {
-    _tasks = [];
-    _hasMore = true;
-    _errorMessage = null;
-    _currentPage = 0;
-    _totalPages = 1;
-    notifyListeners();
-  }
-
-  Future<void> _loadTasks({
-    String sortBy = 'createdAt',
-    bool isAsc = true,
-    required String status,
-  }) async {
-    final String url =
-        'https://todo-list-api-mfchjooefq-as.a.run.app/todo-list';
-    final queryParameters = {
-      'offset': _currentPage.toString(),
-      'limit': _limit.toString(),
-      'sortBy': sortBy,
-      'isAsc': isAsc.toString(),
-      'status': status,
-    };
-
-    final uri = Uri.parse(url).replace(queryParameters: queryParameters);
-
-    _isLoading = true;
-    notifyListeners();
-
-    try {
-      final response = await http.get(uri);
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-
-        // ดึงข้อมูล task และ page
-        final List<Task> fetchedTasks = (data['tasks'] as List)
-            .map((taskJson) => Task.fromJson(taskJson))
-            .toList();
-        _currentPage = data['pageNumber']; // หน้าปัจจุบัน
-        _totalPages = data['totalPages']; // จำนวนหน้าทั้งหมด
-
-        // คำนวณ `hasMore`
-        _hasMore = _currentPage < _totalPages;
-
-        // เพิ่มข้อมูลใหม่
-        _tasks.addAll(fetchedTasks);
-      } else {
-        throw Exception(
-            'Failed to load tasks. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      _errorMessage = e.toString();
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
   }
 
   Map<String, List<Task>> getGroupedTasksWithReadableDates() {
@@ -117,5 +77,71 @@ class TaskViewModel with ChangeNotifier {
     }
 
     return groupedTasks;
+  }
+
+  Future<void> _loadTasks({
+    String sortBy = 'createdAt',
+    bool isAsc = true,
+    required String status,
+  }) async {
+    final String url =
+        'https://todo-list-api-mfchjooefq-as.a.run.app/todo-list';
+    final queryParameters = {
+      'offset': (_currentPage - 1).toString(), // -1 because req api para of offset field -> offset = page - 1
+      'limit': _limit.toString(),
+      'sortBy': sortBy,
+      'isAsc': isAsc.toString(),
+      'status': status,
+    };
+
+    final uri = Uri.parse(url).replace(queryParameters: queryParameters);
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        final List<Task> fetchedTasks = (data['tasks'] as List)
+            .map((taskJson) => Task.fromJson(taskJson))
+            .toList();
+
+        _assignRandomAttributes(fetchedTasks);
+        _currentPage = data['pageNumber'];
+        _totalPages = data['totalPages'];
+        _hasMore = _currentPage < _totalPages;
+
+        _tasks.addAll(fetchedTasks);
+      } else {
+        throw Exception(
+          'Failed to load tasks. Status code: ${response.statusCode}',
+        );
+      }
+    } catch (e) {
+      _errorMessage = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  void _assignRandomAttributes(List<Task> tasks) {
+    for (var task in tasks) {
+      if (task.icon == null || task.color == null) {
+        task.icon = _icons[_random.nextInt(_icons.length)];
+        task.color = _colors[_random.nextInt(_colors.length)];
+      }
+    }
+  }
+
+  void _resetPagination() {
+    _tasks.clear();
+    _hasMore = true;
+    _errorMessage = null;
+    _currentPage = 1;
+    _totalPages = 1;
+    notifyListeners();
   }
 }

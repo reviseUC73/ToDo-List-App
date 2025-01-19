@@ -12,31 +12,31 @@ class TaskCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
       child: Row(
         children: [
-          // Circle Avatar with Icon
-          CircleAvatar(
-            radius: 24.0,
-            backgroundColor: Colors.grey[200],
+          Container(
+            width: 48.0,
+            height: 48.0,
+            decoration: BoxDecoration(
+              color: task.color ?? Colors.grey,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             child: Icon(
-              Icons.task,
-              color: Colors.grey[700],
-            ), // Use generic icon
+              task.icon ?? Icons.task,
+              color: Colors.white,
+            ),
           ),
           const SizedBox(width: 16.0),
-          // Task Info
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Task Title
                 Text(
                   task.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 4.0),
-                // Task Description
                 Text(
                   task.description,
                   style: TextStyle(
@@ -47,7 +47,6 @@ class TaskCard extends StatelessWidget {
               ],
             ),
           ),
-          // Options Button
           IconButton(
             icon: Icon(Icons.more_vert, color: Colors.grey[700]),
             onPressed: () {

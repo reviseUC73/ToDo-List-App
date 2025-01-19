@@ -1,20 +1,4 @@
-class Task2 {
-  final String title;
-  final String description;
-  final String date;
-  final String status; // e.g., "To-do", "Doing", "Done"
-  final dynamic icon; // Use IconData or String for icons.
-
-  Task2({
-    required this.title,
-    required this.description,
-    required this.date,
-    required this.status,
-    required this.icon,
-  });
-}
-
-
+import 'package:flutter/material.dart';
 
 class Task {
   final String id;
@@ -22,6 +6,8 @@ class Task {
   final String description;
   final DateTime createdAt;
   final String status;
+  IconData? icon; // ไอคอนที่สุ่มได้
+  Color? color; // สีที่สุ่มได้
 
   Task({
     required this.id,
@@ -29,6 +15,8 @@ class Task {
     required this.description,
     required this.createdAt,
     required this.status,
+    this.icon,
+    this.color,
   });
 
   // Factory constructor to parse JSON

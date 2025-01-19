@@ -43,7 +43,7 @@ class TaskBody extends StatelessWidget {
         return false;
       },
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
         itemCount: groupedTasks.length + (taskViewModel.hasMore ? 1 : 0),
         itemBuilder: (context, index) {
           if (index == groupedTasks.length) {
@@ -64,8 +64,8 @@ class TaskBody extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 4.0,
-                  vertical: 8.0,
+                  horizontal: 6.0,
+                  vertical: 12.0,
                 ),
                 child: Text(
                   readableDate,
@@ -90,7 +90,7 @@ class TaskBody extends StatelessWidget {
                               ),
                             );
                           },
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.redAccent,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
                           label: 'Delete',
