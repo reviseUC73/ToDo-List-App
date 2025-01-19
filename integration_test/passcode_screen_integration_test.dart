@@ -5,7 +5,8 @@ import 'package:todo_list/main.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Test PasscodeScreen and navigation to TaskManager on correct passcode',
+  testWidgets(
+      'Test PasscodeScreen and navigation to TaskManagerScreen on correct passcode',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
@@ -18,7 +19,7 @@ void main() {
     await tester.tap(find.text('6'));
     await tester.pumpAndSettle();
 
-    // Verify navigation to TaskManager
+    // Verify navigation to TaskManagerScreen
     expect(find.text('Hi! User'), findsOneWidget);
   });
 }

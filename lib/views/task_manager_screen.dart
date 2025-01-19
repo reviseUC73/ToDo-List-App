@@ -4,14 +4,14 @@ import '../viewmodels/task_viewmodel.dart';
 import 'widgets/task_header.dart';
 import 'widgets/task_body.dart';
 
-class TaskManager extends StatefulWidget {
-  const TaskManager({super.key});
+class TaskManagerScreen extends StatefulWidget {
+  const TaskManagerScreen({super.key});
 
   @override
-  State<TaskManager> createState() => _TaskManagerState();
+  State<TaskManagerScreen> createState() => _TaskManagerScreenState();
 }
 
-class _TaskManagerState extends State<TaskManager> {
+class _TaskManagerScreenState extends State<TaskManagerScreen> {
   int selectedIndex = 0;
   final List<String> tabs = ['TODO', 'DOING', 'DONE'];
 

@@ -37,7 +37,7 @@ class _PasscodeScreenState extends State<PasscodeScreen> {
 
   void _validatePasscode() {
     if (passcodeValidator.validate(enteredPasscode)) {
-      Navigator.pushReplacementNamed(context, '/taskManager');
+      Navigator.pushReplacementNamed(context, '/TaskManagerScreen');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

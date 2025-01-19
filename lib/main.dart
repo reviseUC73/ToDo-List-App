@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/views/passcode_screen.dart';
-import 'views/task_manager.dart';
+import 'views/task_manager_screen.dart';
 import 'package:provider/provider.dart';
 import 'viewmodels/task_viewmodel.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/passcode',
         routes: {
           '/passcode': (context) => const PasscodeScreen(),
-          '/taskManager': (context) => const TaskManager(),
+          '/TaskManagerScreen': (context) => const TaskManagerScreen(),
         },
       ),
     );
