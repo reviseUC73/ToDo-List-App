@@ -6,8 +6,8 @@ class Task {
   final String description;
   final DateTime createdAt;
   final String status;
-  IconData? icon; // ไอคอนที่สุ่มได้
-  Color? color; // สีที่สุ่มได้
+  IconData? icon;
+  Color? color;
 
   Task({
     required this.id,
@@ -19,7 +19,6 @@ class Task {
     this.color,
   });
 
-  // Factory constructor to parse JSON
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       id: json['id'],

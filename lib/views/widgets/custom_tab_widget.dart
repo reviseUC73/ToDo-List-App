@@ -15,14 +15,14 @@ class CustomTabWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(6.0),
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
       margin: EdgeInsets.symmetric(horizontal: 32.0),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(24.0),
         boxShadow: [
-          BoxShadow(color: Colors.white, offset: Offset(-3, -3), blurRadius: 6),
-          BoxShadow(color: Colors.grey.shade400, offset: Offset(3, 3), blurRadius: 6),
+          BoxShadow(
+              color: Colors.grey.shade400, offset: Offset(3, 3), blurRadius: 2),
         ],
       ),
       child: Row(
@@ -49,7 +49,12 @@ class CustomTabWidget extends StatelessWidget {
                 color: isSelected ? null : Colors.grey[200],
                 borderRadius: BorderRadius.circular(20.0),
                 boxShadow: isSelected
-                    ? [BoxShadow(color: const Color.fromARGB(68, 11, 11, 11), blurRadius: 10, offset: Offset(-1, 4))]
+                    ? [
+                        BoxShadow(
+                            color: const Color.fromARGB(68, 11, 11, 11),
+                            blurRadius: 10,
+                            offset: Offset(-1, 4))
+                      ]
                     : null,
               ),
               child: Text(

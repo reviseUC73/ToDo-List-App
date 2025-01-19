@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/views/custom_tab_widget.dart';
+import 'package:todo_list/views/widgets/custom_tab_widget.dart';
 
 class TaskHeader extends StatelessWidget {
   final int selectedIndex;
@@ -21,7 +21,7 @@ class TaskHeader extends StatelessWidget {
         // Header Container
         Container(
           decoration: const BoxDecoration(
-            color: Color(0xFFECEAFE),
+            color: Color.fromARGB(255, 208, 214, 248),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(24.0),
               bottomRight: Radius.circular(24.0),
@@ -29,7 +29,7 @@ class TaskHeader extends StatelessWidget {
           ),
           padding: const EdgeInsets.only(top: 60.0, bottom: 70.0),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,7 +56,7 @@ class TaskHeader extends StatelessWidget {
                 Text(
                   'This is just a sample UI.\nOpen to create your style :D',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[700],
                   ),
@@ -67,7 +67,7 @@ class TaskHeader extends StatelessWidget {
         ),
         // Custom Tab Bar
         Positioned(
-          bottom: -10,
+          bottom: -16,
           left: 16.0,
           right: 16.0,
           child: Center(
