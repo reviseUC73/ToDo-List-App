@@ -79,11 +79,6 @@ A Flutter-based ToDo List application with a passcode-protected login screen. Th
 - ![image](https://github.com/user-attachments/assets/c27c1571-b00b-40c1-b48c-4347b108b57f)
 - ![image](https://github.com/user-attachments/assets/4928f46f-cbb1-46d6-b500-ccba75d10036)
 
-
-## Contributing
-
-Contributions are welcome! Fork the repository, make changes, and submit a pull request. Feature suggestions and bug reports are also appreciated.
-
 ## License
 
 This project is licensed under the MIT License.
